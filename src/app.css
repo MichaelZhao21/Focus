@@ -12,7 +12,7 @@ html, body {
     position: absolute;
     top: 0;
     width: 100%;
-    color: #A6E16B;
+    color: white;
     font-family: 'Open Sans', sans-serif;
     font-weight: 700;
     font-size: 11rem;
@@ -36,9 +36,9 @@ html, body {
 
 #text-display {
     margin: auto;
-    margin-top: 29vh;
+    margin-top: 32vh;
     width: 70%;
-    height: 65vh;
+    height: 60vh;
     background-color: #212121;
     filter: drop-shadow(0 0 0.2rem #aaaaaa);
     padding: 1rem;
@@ -54,9 +54,9 @@ html, body {
     margin: auto;
     left: 0;
     right: 0;
-    top: 29vh;
+    top: 32vh;
     width: 70%;
-    height: 55vh;
+    height: 50vh;
     background-color: #212121;
     filter: drop-shadow(0 0 0.2rem #aaaaaa);
     padding: 1rem;
@@ -88,4 +88,8 @@ html, body {
 #submit-button:hover {
     filter: drop-shadow(0 0 0.3rem white);
     cursor: pointer;
+}
+
+ul {
+    margin: 0;
 }
