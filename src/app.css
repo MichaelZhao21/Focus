@@ -112,12 +112,13 @@ body {
     font-family: 'Open Sans', sans-serif;
     font-weight: 100;
     font-size: 1rem;
-    background-color: #0000001f;
+    background-color: #0000004f;
     border: none;
     transition: 0.3s;
 }
 
 #new-photo:hover {
+    color: white;
     background-color: #00000062;
 	cursor: pointer;
 }
@@ -131,7 +132,7 @@ body {
     top: 1rem;
     left: 1rem;
     margin: auto;
-    background-color: #0000001f;
+    background-color: #0000004f;
     padding: 0.1rem 0.3rem;
 }
 
