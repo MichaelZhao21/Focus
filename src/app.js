@@ -14,8 +14,9 @@ const monthNames = [
 ];
 const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
-var shift = false;
-var before = '';
+var shift = false,
+	ctrl = false,
+	before = '';
 const titleColor = 'hsl(' + randInt(0, 361) + ', 86%, 89%)';
 
 document.querySelector('body').onload = () => {
@@ -31,12 +32,14 @@ document.querySelector('body').onload = () => {
 		setInterval(setCurrentTimeAndDate, 1000);
 	}, 1000 - millis);
 
-	document.getElementById('text-display').ondblclick = () => {
+	document.getElementById('text-display').ondblclick = (event) => {
 		shift = false;
 		document.getElementById('text-display').style.display = 'none';
 		document.getElementById('text-edit').style.display = 'block';
 		document.getElementById('submit-button').style.display = 'block';
 		before = document.getElementById('text-edit').value;
+		document.getElementById('text-edit').focus();
+		resetCursor(document.getElementById('text-edit'));
 	};
 
 	document.getElementById('submit-button').onclick = save;
@@ -46,7 +49,13 @@ document.querySelector('body').onload = () => {
 
 	document.getElementById('text-edit').onkeydown = (event) => {
 		if (event.keyCode === 16) shift = true;
-		else if (event.keyCode === 13 && shift) save();
+		if (event.keyCode === 17) ctrl = true;
+		else if (event.keyCode === 13 && (shift || ctrl)) {
+			shift = false;
+			ctrl = false;
+			save();
+			return false;
+		}
 		else if (event.keyCode === 9) return tab();
 		else if (event.keyCode === 27) {
 			document.getElementById('text-edit').value = before;
@@ -56,8 +65,20 @@ document.querySelector('body').onload = () => {
 
 	document.getElementById('text-edit').onkeyup = (event) => {
 		if (event.keyCode === 16) shift = false;
+		if (event.keyCode === 17) ctrl = false;
 	};
 };
+
+function resetCursor(txtElement) { 
+    if (txtElement.setSelectionRange) { 
+        txtElement.focus(); 
+        txtElement.setSelectionRange(0, 0); 
+    } else if (txtElement.createTextRange) { 
+        var range = txtElement.createTextRange();  
+        range.moveStart('character', 0); 
+        range.select(); 
+    } 
+}
 
 function getTodo() {
 	var xhttp = new XMLHttpRequest();
