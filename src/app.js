@@ -1,12 +1,65 @@
-const monthNames = ["January", "February", "March", "April", "May", "June",
-  "July", "August", "September", "October", "November", "December"
+const monthNames = [
+	'January',
+	'February',
+	'March',
+	'April',
+	'May',
+	'June',
+	'July',
+	'August',
+	'September',
+	'October',
+	'November',
+	'December',
 ];
-const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
 var shift = false;
-var before = "";
+var before = '';
+const titleColor = 'hsl(' + randInt(0, 361) + ', 86%, 89%)';
 
-window.onload = () => {
+document.querySelector('body').onload = () => {
+	getTodo();
+	getPicture();
+
+	document.getElementById('time').style.color = titleColor;
+
+	var millis = setCurrentTimeAndDate();
+	setCurrentDate();
+	setTimeout(function () {
+		setCurrentTimeAndDate();
+		setInterval(setCurrentTimeAndDate, 1000);
+	}, 1000 - millis);
+
+	document.getElementById('text-display').ondblclick = () => {
+		shift = false;
+		document.getElementById('text-display').style.display = 'none';
+		document.getElementById('text-edit').style.display = 'block';
+		document.getElementById('submit-button').style.display = 'block';
+		before = document.getElementById('text-edit').value;
+	};
+
+	document.getElementById('submit-button').onclick = save;
+	document.getElementById('new-photo').onclick = () => {
+		getPicture(true);
+	};
+
+	document.getElementById('text-edit').onkeydown = (event) => {
+		if (event.keyCode === 16) shift = true;
+		else if (event.keyCode === 13 && shift) save();
+		else if (event.keyCode === 9) return tab();
+		else if (event.keyCode === 27) {
+			document.getElementById('text-edit').value = before;
+			exitEdit();
+		}
+	};
+
+	document.getElementById('text-edit').onkeyup = (event) => {
+		if (event.keyCode === 16) shift = false;
+	};
+};
+
+function getTodo() {
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function () {
 		var converter = new showdown.Converter();
@@ -15,41 +68,20 @@ window.onload = () => {
 	};
 	xhttp.open('GET', 'https://api.michaelzhao.xyz/todo');
 	xhttp.send();
+}
 
-	document.getElementById('time').style.color = 'hsl(' + randInt(0, 361) + ', 86%, 89%)';
-	
-	var millis = setCurrentTimeAndDate();
-	setCurrentDate();
-	setTimeout(function() {
-		setCurrentTimeAndDate();
-		setInterval(setCurrentTimeAndDate, 1000);
-	}, (1000 - millis))
-
-	document.getElementById('text-display').ondblclick = () => {
-        shift = false;
-		document.getElementById('text-display').style.display = 'none';
-        document.getElementById('text-edit').style.display = 'block';
-		document.getElementById('submit-button').style.display = 'block';
-		before = document.getElementById('text-edit').value;
+function getPicture(newPic = false) {
+	var xhttp = new XMLHttpRequest();
+	xhttp.onload = function () {
+		const res = JSON.parse(this.response);
+		document.querySelector('body').style.backgroundImage = "url('" + res.urls.full + "')";
+		var author = document.getElementById('credits-author');
+		author.href = res.user.links.html;
+		author.innerHTML = res.user.name;
 	};
-
-	document.getElementById('submit-button').onclick = () => {save()};
-
-	document.getElementById('text-edit').onkeydown = (event) => {
-		console.log(event.keyCode);
-		if (event.keyCode === 16) shift = true;
-		else if (event.keyCode === 13 && shift) save();
-		else if (event.keyCode === 9) return tab();
-		else if (event.keyCode === 27) {
-			document.getElementById('text-edit').value = before;
-			exitEdit();
-		}
-    };
-    
-    document.getElementById('text-edit').onkeyup = (event) => {
-        if (event.keyCode === 16) shift = false;
-    }
-};
+	xhttp.open('GET', 'https://api.michaelzhao.xyz/photo' + (newPic ? '/new' : ''));
+	xhttp.send();
+}
 
 function tab() {
 	var te = document.getElementById('text-edit');
@@ -69,7 +101,7 @@ function tab() {
 }
 
 function save() {
-    var data = document.getElementById('text-edit').value;
+	var data = document.getElementById('text-edit').value;
 
 	var xhttp = new XMLHttpRequest();
 	xhttp.open('POST', 'https://api.michaelzhao.xyz/todo/edit');
@@ -84,7 +116,7 @@ function save() {
 function exitEdit() {
 	document.getElementById('text-display').style.display = 'block';
 	document.getElementById('text-edit').style.display = 'none';
-    document.getElementById('submit-button').style.display = 'none';
+	document.getElementById('submit-button').style.display = 'none';
 }
 
 function randInt(min, max) {
@@ -100,7 +132,7 @@ function setCurrentTimeAndDate() {
 		time = `${hour}:${min}:${sec}`;
 	document.getElementById('time').innerHTML = time;
 
-	if (hour == "00" && min == "00" && sec == "00") {
+	if (hour == '00' && min == '00' && sec == '00') {
 		setCurrentDate();
 	}
 
