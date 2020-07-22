@@ -112,12 +112,13 @@ body {
     font-family: 'Open Sans', sans-serif;
     font-weight: 100;
     font-size: 1rem;
-    background-color: #00000060;
-	border: 0.01rem solid #444444;
+    background-color: #0000001f;
+    border: none;
+    transition: 0.3s;
 }
 
 #new-photo:hover {
-	filter: drop-shadow(0 0 0.1rem #999999);
+    background-color: #00000062;
 	cursor: pointer;
 }
 
@@ -130,7 +131,8 @@ body {
     top: 1rem;
     left: 1rem;
     margin: auto;
-	text-shadow: 0 0 2rem black;
+    background-color: #0000001f;
+    padding: 0.1rem 0.3rem;
 }
 
 ul {
@@ -141,6 +143,7 @@ ul {
 a {
     text-decoration: none;
     color: #f0c846;
+    transition: 0.3s;
 }
 
 a:hover {
