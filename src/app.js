@@ -24,8 +24,7 @@ document.querySelector('body').onload = () => {
 	getPicture();
 
 	browser.storage.sync.get('api').then((gotApi) => {
-		console.log(gotApi);
-		api = gotApi.api;
+		api = gotApi.api || "";
 		getTodo();
 	}, getTodo);
 
@@ -38,7 +37,7 @@ document.querySelector('body').onload = () => {
 		setInterval(setCurrentTimeAndDate, 1000);
 	}, 1000 - millis);
 
-	if (api !== "") document.getElementById('text-display').ondblclick = () => {
+	document.getElementById('text-display').ondblclick = () => {
 		document.getElementById('text-display').style.display = 'none';
 		document.getElementById('text-edit').style.display = 'block';
 		document.getElementById('submit-button').style.display = 'block';
