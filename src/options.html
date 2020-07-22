@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+	</head>
+	<body>
+        <p>
+            Enter the API website where the extension will GET and POST the todo list.
+            The endpoints of this website will be '/' and '/edit', where this app will
+            send a GET request to '/' to get the markdown file for the todo list. The
+            POST request will be send to the '/edit' endpoint as a JSON stringified object.
+            This object is in the simple form { data: [Markdown as a string] }.
+        </p>
+        <form>
+            <label>API Website<input type="text" id="website"></label>
+            <button id="save-button">Save</button>
+        </form>
+        <script src="options.js"></script>
+    </body>
+</html>

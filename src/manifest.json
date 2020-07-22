@@ -16,6 +16,12 @@
 
 	"content_security_policy": "script-src 'self' 'sha256-BKb1CxC6Orzrdo9H+kWQgXMBexNrH4RQemboEiJo6Q4=' https://fonts.google.com https://cdnjs.cloudflare.com; object-src 'self'",
 
+	"options_ui": {
+		"page": "options.html",
+		"browser_style": true,
+		"chrome_style": true
+	},
+
 	"permissions": ["<all_urls>", "storage"],
 
 	"browser_specific_settings": {
