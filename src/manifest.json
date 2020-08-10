@@ -1,7 +1,7 @@
 {
 	"manifest_version": 2,
 	"name": "Focus",
-	"version": "1.1.3",
+	"version": "1.1.4",
 	"author": "Michael Zhao",
 
 	"description": "A focused new tab experience that allows for you to be the most productive that you can :D",
