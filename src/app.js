@@ -91,7 +91,7 @@ function getTodo() {
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function () {
 		var converter = new showdown.Converter();
-		document.getElementById('text-display').innerHTML = converter.makeHtml(this.response);
+		document.getElementById('text-display').innerHTML = converter.makeHtml(this.response) + "<div class='spacer'></div>";
 		document.getElementById('text-edit').value = this.response;
 	};
 	xhttp.open('GET', api);
@@ -137,7 +137,7 @@ function save() {
 	xhttp.send(JSON.stringify({ data }));
 
 	var converter = new showdown.Converter();
-	document.getElementById('text-display').innerHTML = converter.makeHtml(data);
+	document.getElementById('text-display').innerHTML = converter.makeHtml(data) + "<div class='spacer'></div>";
 	exitEdit();
 }
 

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import "./googlefonts.css";
 
 html,
 body {
@@ -138,7 +138,10 @@ body {
 
 ul {
 	margin: 0;
-	margin-bottom: 1rem;
+}
+
+h2 {
+	margin: 1rem 0;
 }
 
 a {
@@ -149,4 +152,8 @@ a {
 
 a:hover {
     color: #b18700;
+}
+
+.spacer {
+	height: 1rem;
 }
