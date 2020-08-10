@@ -104,7 +104,7 @@ function getPicture(newPic = false) {
 		const res = JSON.parse(this.response);
 		document.querySelector('body').style.backgroundImage = "url('" + res.urls.full + "')";
 		var author = document.getElementById('credits-author');
-		author.href = res.user.links.html;
+		author.href = res.user.links.html + '?utm_source=focus_todo&utm_medium=referral';
 		author.innerHTML = res.user.name;
 	};
 	xhttp.open('GET', 'https://api.michaelzhao.xyz/photo' + (newPic ? '/new' : ''));
