@@ -7,19 +7,19 @@
 	"description": "A focused new tab experience that allows for you to be the most productive that you can :D",
 
 	"icons": {
-		"48": "icon.png"
+		"48": "res/icon.png"
 	},
 
 	"chrome_settings_overrides": {
-		"homepage": "newtab.html"
+		"homepage": "src/newtab.html"
 	},
 	
 	"chrome_url_overrides": {
-		"newtab": "newtab.html"
+		"newtab": "src/newtab.html"
 	},
 
 	"options_ui": {
-		"page": "options.html",
+		"page": "src/options.html",
 		"browser_style": true,
 		"chrome_style": true
 	},
