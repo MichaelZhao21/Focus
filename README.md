@@ -4,7 +4,6 @@ A new tab experience that's simple and useful! It's just a simple notepad to hol
 
 ## TODO
 
-- Why do I have a config.json file?
 - Figure out if this works in chrome -> or how to convert it
 - Change that background to one image for now
 - Change the `b` bolded markdown text to gold color and underline `a` links in `app.css`
